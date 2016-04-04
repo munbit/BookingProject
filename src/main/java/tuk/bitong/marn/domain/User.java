@@ -1,6 +1,7 @@
 package tuk.bitong.marn.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -18,16 +19,16 @@ public class User implements Serializable {
     @Column(name="userid")
     private Long userId;
 
-    @Column(name = "username")
+    @Column(name = "username",nullable = false,unique = true)
     private String userName;
 
-    @Column(name = "userfullname")
+    @Column(name = "userfullname",nullable = false)
     private String userFullName;
 
-    @Column(name = "password")
+    @Column(name = "password",nullable = false)
     private String password;
 
-    @Column(name = "email")
+    @Column(name = "email",nullable = false,unique = true)
     private String email;
 
     @Column(name ="enabled")
@@ -46,20 +47,28 @@ public class User implements Serializable {
         this.enabled=user.enabled;
     }
 
-    public int getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(int enabled) {
-        this.enabled = enabled;
-    }
-
-    public Long getUserid() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserid(Long userid) {
-        this.userId = userid;
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserFullName() {
+        return userFullName;
+    }
+
+    public void setUserFullName(String userFullName) {
+        this.userFullName = userFullName;
     }
 
     public String getPassword() {
@@ -78,19 +87,11 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
+    public int getEnabled() {
+        return enabled;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserFullName() {
-        return userFullName;
-    }
-
-    public void setUserFullName(String userFullName) {
-        this.userFullName = userFullName;
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
     }
 }

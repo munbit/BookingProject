@@ -44,25 +44,13 @@
 
     <div class="navbar-default sidebar" role="navigation" th:fragment="menuleft">
         <div class="sidebar-nav navbar-collapse">
-            <ul class="nav" id="side-menu">
-                <li class="sidebar-search">
-                    <div class="input-group custom-search-form">
-                        <input type="text" class="form-control" placeholder="Search..."/>
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                    </div>
-                    <!-- /input-group -->
-                </li>
-                <li>
-                    <a href="index-.html"><i class="fa fa-bookmark fa-fw"></i> Hotel Management</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-users fa-fw"></i> User Management</a>
-                </li>
-            </ul>
+
+            <div class="nav list-group">
+                <a class="list-group-item" th:href="@{/admin/}" ><i class="fa fa-list fa-fw"></i>&nbsp; Hotel Management</a>
+                <a class="list-group-item" th:href="@{/admin/room/}" ><i class="fa fa-suitcase fa-fw"></i>&nbsp; Room Management</a>
+                <a class="list-group-item" th:href="@{/admin/user/}" ><i class="fa fa-user fa-fw"></i>&nbsp; Member Management</a>
+                <a class="list-group-item" th:href="@{/admin/master/}" ><i class="fa fa-folder fa-fw"></i>&nbsp; Master Management</a>
+            </div>
         </div>
         <!-- /.sidebar-collapse -->
     </div>
