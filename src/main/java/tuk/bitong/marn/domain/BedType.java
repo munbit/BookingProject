@@ -6,21 +6,21 @@ import javax.persistence.*;
  * Created by muhai on 15/04/2559.
  */
 @Entity
-@Table(name = "bettype")
+@Table(name = "bedtype")
 public class BedType {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="bettypeid")
-    private Long betTypeId;
+    @Column(name="bedtypeid")
+    private Long bedTypeId;
 
-    @Column(name="bettypenamethai",nullable = false)
-    private String betTypeNameThai;
+    @Column(name="bedtypenamethai",nullable = false)
+    private String bedTypeNameThai;
 
-    @Column(name="bettypenameenglish",nullable = false)
-    private String betTypeNameEnglish;
+    @Column(name="bedtypenameenglish",nullable = false)
+    private String bedTypeNameEnglish;
 
     @Column(name ="enabled")
     private int enabled;
@@ -28,28 +28,28 @@ public class BedType {
     public BedType() {
     }
 
-    public Long getBetTypeId() {
-        return betTypeId;
+    public Long getBedTypeId() {
+        return bedTypeId;
     }
 
-    public void setBetTypeId(Long betTypeId) {
-        this.betTypeId = betTypeId;
+    public void setBedTypeId(Long bedTypeId) {
+        this.bedTypeId = bedTypeId;
     }
 
-    public String getBetTypeNameThai() {
-        return betTypeNameThai;
+    public String getBedTypeNameThai() {
+        return bedTypeNameThai;
     }
 
-    public void setBetTypeNameThai(String betTypeNameThai) {
-        this.betTypeNameThai = betTypeNameThai;
+    public void setBedTypeNameThai(String bedTypeNameThai) {
+        this.bedTypeNameThai = bedTypeNameThai;
     }
 
-    public String getBetTypeNameEnglish() {
-        return betTypeNameEnglish;
+    public String getBedTypeNameEnglish() {
+        return bedTypeNameEnglish;
     }
 
-    public void setBetTypeNameEnglish(String betTypeNameEnglish) {
-        this.betTypeNameEnglish = betTypeNameEnglish;
+    public void setBedTypeNameEnglish(String bedTypeNameEnglish) {
+        this.bedTypeNameEnglish = bedTypeNameEnglish;
     }
 
     public int getEnabled() {
