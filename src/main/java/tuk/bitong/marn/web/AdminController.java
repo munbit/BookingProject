@@ -11,6 +11,6 @@ public class AdminController {
 
     @RequestMapping("/admin")
     String home(){
-        return "admin";
+        return "backends/admin";
     }
 }

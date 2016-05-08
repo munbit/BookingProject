@@ -1,14 +1,22 @@
 package tuk.bitong.marn;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.orm.jpa.EntityScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import java.io.File;
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "tuk.bitong.marn.domain")
 @EntityScan(basePackages = "tuk.bitong.marn.domain")
 public class Application {
+
+	///public static String ROOT_UPLOAD =  Application.class.getClassLoader().getResource("./static") + "/upload-dir";
+	//public static String ROOT_UPLOAD =  "src/main/resources/static/upload-dir";
+
 
 	public static void main(String[] args) {
 //		org.springframework.security.crypto.password.PasswordEncoder encoder
@@ -37,4 +45,13 @@ public class Application {
 //		}
 		SpringApplication.run(Application.class, args);
 	}
+
+	/*@Bean
+	CommandLineRunner init() {
+		return (String[] args) -> {
+			System.out.println(ROOT_UPLOAD);
+			new File(ROOT_UPLOAD).mkdir();
+		};
+	}*/
+
 }

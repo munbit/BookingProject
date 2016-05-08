@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class IndexController {
     @RequestMapping("/")
     String home() {
-        return "index";
+        return "frontends/index";
     }
 
 }

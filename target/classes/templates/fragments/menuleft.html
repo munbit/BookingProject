@@ -46,10 +46,17 @@
         <div class="sidebar-nav navbar-collapse">
 
             <div class="nav list-group">
-                <a class="list-group-item" th:href="@{/admin/}" ><i class="fa fa-list fa-fw"></i>&nbsp; Hotel Management</a>
-                <a class="list-group-item" th:href="@{/admin/room/}" ><i class="fa fa-suitcase fa-fw"></i>&nbsp; Room Management</a>
-                <a class="list-group-item" th:href="@{/admin/user/}" ><i class="fa fa-user fa-fw"></i>&nbsp; Member Management</a>
-                <a class="list-group-item" th:href="@{/admin/master/}" ><i class="fa fa-folder fa-fw"></i>&nbsp; Master Management</a>
+                <a class="list-group-item admin-hotel" th:href="@{/admin/hotel/}" ><i class="fa fa-building-o fa-fw"></i>&nbsp; Hotel Management</a>
+                <a class="list-group-item admin-roomtype" th:href="@{/admin/roomtype/}" ><i class="fa fa-sitemap fa-fw"></i>&nbsp; Room Type Master</a>
+                <a class="list-group-item admin-user" th:href="@{/admin/user/}" ><i class="fa fa-user fa-fw"></i>&nbsp; Member Management</a>
+                <a class="list-group-item admin-continent" th:href="@{/admin/continent/}" ><i class="fa fa-arrows fa-fw"></i>&nbsp; Continent Master </a>
+                <a class="list-group-item admin-country" th:href="@{/admin/country/}" ><i class="fa fa-globe fa-fw"></i>&nbsp; Country Master </a>
+                <a class="list-group-item admin-zone" th:href="@{/admin/zone/}" ><i class="fa fa-columns fa-fw"></i>&nbsp; Zone Master </a>
+                <a class="list-group-item admin-province" th:href="@{/admin/province/}" ><i class="fa fa-folder fa-fw"></i>&nbsp; Province Master </a>
+                <a class="list-group-item admin-district" th:href="@{/admin/district/}" ><i class="fa fa-puzzle-piece fa-fw"></i>&nbsp; District Master </a>
+                <a class="list-group-item admin-locality" th:href="@{/admin/locality/}" ><i class="fa fa-flag fa-fw"></i>&nbsp; Locality Master </a>
+                <a class="list-group-item admin-hoteltype" th:href="@{/admin/hoteltype/}" ><i class="fa fa-list fa-fw"></i>&nbsp; Hotel Type Master </a>
+                <a class="list-group-item admin-hotellevel" th:href="@{/admin/hotellevel/}" ><i class="fa fa-star-o fa-fw"></i>&nbsp; Hotel Level Master </a>
             </div>
         </div>
         <!-- /.sidebar-collapse -->

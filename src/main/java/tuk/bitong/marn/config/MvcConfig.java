@@ -3,6 +3,7 @@ package tuk.bitong.marn.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -17,6 +18,13 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter{
 
+   /* private static final String UPLOAD_DIR = "/upload-dir";
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry)
+    {
+        registry.addResourceHandler("/upload-dir*//**").addResourceLocations(UPLOAD_DIR);
+    }*/
    /* @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/home").setViewName("home");

@@ -2,6 +2,7 @@ package tuk.bitong.marn.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,8 +35,6 @@ public class UserController {
 
     Context context = new Context();
 
-
-
     @Qualifier("userRepository")
     @Autowired
     private UserRepository userRepository;
@@ -47,6 +46,7 @@ public class UserController {
     public UserController() {
         context.setVariable("editUser",null);
         context.setVariable("saveUser",null);
+        context.setVariable("deleteUser",null);
         context.setVariable("resetPassword",null);
         context.setVariable("user",new User());
         context.setVariable("obj_role",new UserRole());
@@ -56,18 +56,21 @@ public class UserController {
         context.setVariable("roles",ur);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/" , method = RequestMethod.GET)
     String  userList(Model model){
         model.addAttribute("users",userRepository.findAll());
-        return  "user_list";
+        return  "users/user_list";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/add" , method = RequestMethod.GET)
     String  userAdd(Model model){
         model.addAttribute("user",new User());
-        return  "user_add";
+        return  "users/user_add";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/add" , method = RequestMethod.POST)
     String  userAddSave(Model model,@ModelAttribute("user") User user,final RedirectAttributes redirectAttributes){
         try{
@@ -89,17 +92,19 @@ public class UserController {
             model.addAttribute("user",user);
             model.addAttribute("saveUser","unsuccess");
             redirectAttributes.addFlashAttribute("saveUser", "unsuccess");
-            return  "user_add";
+            return  "users/user_add";
         }
         return  "redirect:/admin/user/";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/edit/{userId}" , method = RequestMethod.GET)
     String  userEditPage(Model model,@PathVariable("userId") Long userId){
         model.addAttribute("user",userRepository.findOne(userId));
-        return  "user_edit";
+        return  "users/user_edit";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/edit" , method = RequestMethod.POST)
     String  userEditSave(Model model,@ModelAttribute("user") User user,
                          final RedirectAttributes redirectAttributes){
@@ -114,11 +119,12 @@ public class UserController {
             model.addAttribute("user",user);
             model.addAttribute("editUser","unsuccess");
             redirectAttributes.addFlashAttribute("editUser", "unsuccess");
-            return  "user_edit";
+            return  "users/user_edit";
         }
         return  "redirect:/admin/user/";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/status/{userId}" , method = RequestMethod.GET)
     String  userEnableDisable(@PathVariable("userId") Long userId){
         User u = userRepository.findOne(userId);
@@ -127,12 +133,14 @@ public class UserController {
         return  "redirect:/admin/user/";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/resetpassword/{userId}" , method = RequestMethod.GET)
     String  userResetPasswordPage(Model model,@PathVariable("userId") Long userId){
         model.addAttribute("user",userRepository.findOne(userId));
-        return  "user_resetpassword";
+        return  "users/user_resetpassword";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/resetpassword" , method = RequestMethod.POST)
     String  userResetPasswordSave(@ModelAttribute("user") User user,
                                   final RedirectAttributes redirectAttributes){
@@ -147,23 +155,26 @@ public class UserController {
         return  "redirect:/admin/user/";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/userrole/{userId}" , method = RequestMethod.GET)
     String  userRoleList(Model model,@PathVariable("userId") Long userId){
         model.addAttribute("user",userRepository.findOne(userId));
         model.addAttribute("roles",userRolesRepository.findRoleByUserId(userId));
         model.addAttribute("obj_role",userRolesRepository.findOne((long)1));
-        return  "user_role_list";
+        return  "users/user_role_list";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/userrole/add/{userId}" , method = RequestMethod.GET)
     String  userRoleAddPage(Model model,@PathVariable("userId") Long userId){
         UserRole ur = new UserRole();
         ur.setUserId(userId);
         model.addAttribute("obj_role",ur);
         model.addAttribute("user",userRepository.findOne(userId));
-        return  "user_role_add";
+        return  "users/user_role_add";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/userrole/add" , method = RequestMethod.POST)
     String  userRoleAddSave(Model model,@ModelAttribute("obj_role") UserRole role,final RedirectAttributes redirectAttributes){
         try{
@@ -174,8 +185,55 @@ public class UserController {
             model.addAttribute("user",userRepository.findOne(role.getUserId()));
             model.addAttribute("saveUser","unsuccess");
             redirectAttributes.addFlashAttribute("saveUser", "unsuccess");
-            return  "user_role_add";
+            return  "users/user_role_add";
         }
         return  "redirect:/admin/user/userrole/" +role.getUserId() ;
     }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/userrole/edit/{userRoleId}" , method = RequestMethod.GET)
+    String  userRoleEditPage(Model model,@PathVariable("userRoleId") Long userRoleId){
+        model.addAttribute("obj_role",userRolesRepository.findOne(userRoleId));
+        return  "users/user_role_edit";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/userrole/edit" , method = RequestMethod.POST)
+    String  userRoleEditSave(Model model,@ModelAttribute("obj_role") UserRole role,final RedirectAttributes redirectAttributes) {
+        try {
+            userRolesRepository.save(role);
+            redirectAttributes.addFlashAttribute("editUser", "success");
+        } catch (Exception ex) {
+            model.addAttribute("obj_role", role);
+            model.addAttribute("user", userRepository.findOne(role.getUserId()));
+            model.addAttribute("editUser", "unsuccess");
+            redirectAttributes.addFlashAttribute("editUser", "unsuccess");
+            return "users/user_role_edit";
+        }
+        return "redirect:/admin/user/userrole/" + role.getUserId();
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/userrole/delete/{userRoleId}" , method = RequestMethod.GET)
+    String  userRoleDeletePage(Model model,@PathVariable("userRoleId") Long userRoleId){
+        model.addAttribute("obj_role",userRolesRepository.findOne(userRoleId));
+        return  "users/user_role_delete";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/userrole/delete" , method = RequestMethod.POST)
+    String  userRoledeleteSave(Model model,@ModelAttribute("obj_role") UserRole role,final RedirectAttributes redirectAttributes) {
+        try {
+            userRolesRepository.delete(role);
+            redirectAttributes.addFlashAttribute("deleteUser", "success");
+        } catch (Exception ex) {
+            model.addAttribute("obj_role", role);
+            model.addAttribute("user", userRepository.findOne(role.getUserId()));
+            model.addAttribute("deleteUser", "unsuccess");
+            redirectAttributes.addFlashAttribute("deleteUser", "unsuccess");
+            return "users/user_role_delete";
+        }
+        return "redirect:/admin/user/userrole/" + role.getUserId();
+    }
+
 }
