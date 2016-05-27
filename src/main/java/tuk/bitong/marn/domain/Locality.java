@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by muhai on 15/04/2559.
  */
 @Entity
-@Table(name = "Locality")
+@Table(name = "locality")
 public class Locality {
 
     private static final long serialVersionUID = 1L;

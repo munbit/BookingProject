@@ -29,21 +29,17 @@
             </div>
             <div class="navbar-collapse collapse ">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Service</a></li>
-                    <li class="dropdown ">
+                    <li class="home"><a th:href="@{/}">Home</a></li>
+                    <li class="registration" th:unless="${#httpServletRequest.remoteUser}" ><a th:href="@{/member/signup}">Signup</a></li>
+                    <li th:unless="${#httpServletRequest.remoteUser}" ><a th:href="@{/login/}">Login</a></li>
+                    <li class="dropdown " th:if="${#httpServletRequest.remoteUser}">
                         <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0"
-                           data-close-others="false">Feature <b class=" fa fa-angle-down"></b></a>
+                           data-close-others="false">My <b class=" fa fa-angle-down"  th:inline="text" > [[${#httpServletRequest.remoteUser}]] </b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Typography</a></li>
-                            <li><a href="#">Buttons</a></li>
+                            <li><a th:href="@{/member/history}">My History</a></li>
+                            <li><a th:href="@{/logout}">Logout</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Portfolio</a></li>
-                    <li><a href="#">Price</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contact</a></li>
                     <li><input type="text" placeholder=" Search" class="form-control search"/></li>
                 </ul>
             </div>

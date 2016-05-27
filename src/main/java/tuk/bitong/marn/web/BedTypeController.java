@@ -86,7 +86,7 @@ public class BedTypeController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(value = "/status/{roomTypeId}" , method = RequestMethod.GET)
+    @RequestMapping(value = "/status/{bedTypeId}" , method = RequestMethod.GET)
     String  bedTypeEnableDisable(@PathVariable("bedTypeId") Long bedTypeId){
         BedType b = bedTypeRepository.findOne(bedTypeId);
         b.setEnabled(b.getEnabled()==1 ? 0:1);

@@ -87,7 +87,7 @@ public class RoomTypeController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/status/{roomTypeId}" , method = RequestMethod.GET)
-    String  roomTypeEnableDisable(@PathVariable("hotelTypeId") Long roomTypeId){
+    String  roomTypeEnableDisable(@PathVariable("roomTypeId") Long roomTypeId){
         RoomType r = roomTypeRepository.findOne(roomTypeId);
         r.setEnabled(r.getEnabled()==1 ? 0:1);
         roomTypeRepository.save(r);

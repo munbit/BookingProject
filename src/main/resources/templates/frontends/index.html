@@ -119,11 +119,21 @@
 <script src="../../static/flatlab/frontend/js/common-scripts.js" th:src="@{/flatlab/frontend/js/common-scripts.js}"></script>
 <script src="../../static/flatlab/frontend/js/revulation-slide.js" th:src="@{/flatlab/frontend/js/revulation-slide.js}"></script>
 
+<!-- Custom Fonts -->
+<link href="../../static/font-awesome/css/font-awesome.css" th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" type="text/css"/>
+
+<!-- Custom Theme JavaScript -->
+<script src="../../static/js/validator.js" th:src="@{/js/validator.js}"></script>
+
 <script>
 
     RevSlide.initRevolutionSlider();
 
     $(window).load(function() {
+
+
+        $('.nav .home').addClass('active');
+
         $('[data-zlname = reverse-effect]').mateHover({
             position: 'y-reverse',
             overlayStyle: 'rolling',

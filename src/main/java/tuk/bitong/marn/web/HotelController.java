@@ -67,7 +67,7 @@ public class HotelController {
     private ResourceLoader resourceLoader;
 
     public static String HOTEL_MASTER_UPLOAD = "/hotel_master";
-    public static String CLASSPATH_UPLOAD_DIR ="classpath:static/upload-dir";
+    //public static String CLASSPATH_UPLOAD_DIR ="classpath:static/upload-dir";
 
     public HotelController() {
         context.setVariable("hotelList", null);
@@ -96,7 +96,7 @@ public class HotelController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     String hotelListPage(Model model) {
         model.addAttribute("hotelList", hotelRepository.findAll());
-        Resource resource = resourceLoader.getResource(CLASSPATH_UPLOAD_DIR);
+        Resource resource = resourceLoader.getResource(Application.CLASSPATH_UPLOAD_DIR);
 
         File file = null;
 
@@ -132,7 +132,7 @@ public class HotelController {
                         @ModelAttribute("hotel") Hotel hotel,
                         @RequestParam("uploadFileHotel") MultipartFile uploadFileHotel,
                         final RedirectAttributes redirectAttributes) {
-        Resource resource = resourceLoader.getResource(CLASSPATH_UPLOAD_DIR);
+        Resource resource = resourceLoader.getResource(Application.CLASSPATH_UPLOAD_DIR);
         try {
             Hotel h = hotelRepository.save(hotel);
             String fileName ="";
@@ -189,7 +189,7 @@ public class HotelController {
                         @ModelAttribute("hotel") Hotel hotel,
                         @RequestParam("uploadFileHotel") MultipartFile uploadFileHotel,
                         final RedirectAttributes redirectAttributes) {
-        Resource resource = resourceLoader.getResource(CLASSPATH_UPLOAD_DIR);
+        Resource resource = resourceLoader.getResource(Application.CLASSPATH_UPLOAD_DIR);
         try {
             String fileName;
             if (!uploadFileHotel.isEmpty()) {

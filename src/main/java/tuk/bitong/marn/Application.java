@@ -17,6 +17,7 @@ public class Application {
 	///public static String ROOT_UPLOAD =  Application.class.getClassLoader().getResource("./static") + "/upload-dir";
 	//public static String ROOT_UPLOAD =  "src/main/resources/static/upload-dir";
 
+	public static String CLASSPATH_UPLOAD_DIR ="classpath:static/upload-dir";
 
 	public static void main(String[] args) {
 //		org.springframework.security.crypto.password.PasswordEncoder encoder

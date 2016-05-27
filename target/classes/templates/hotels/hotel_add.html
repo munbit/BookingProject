@@ -167,16 +167,13 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="country">Country : </label>
                     <div class="col-sm-9">
-
                         <select class="form-control"
                                 id="country"
                                 name="country"
                                 required="required">
                             <option disabled="true" selected="selected" value="">----  Select -----</option>
                             <option th:each="country : ${countryList}" th:value="${country.countryId}" th:text="${country.countryNameThai}">Segmentos</option>
-
                         </select>
-
                     </div>
                 </div>
 
