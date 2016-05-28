@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="template/layout">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Booking Nida Admin</title>
+</head>
+
+<body>
+
+<!--fragment start-->
+<div th:fragment="flatlab_blog_detail">
+    <!--breadcrumbs start-->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-sm-4">
+                    <h1>Hotel Details</h1>
+                </div>
+                <div class="col-lg-8 col-sm-8">
+                    <ol class="breadcrumb pull-right">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Pages</a></li>
+                        <li class="active">Hotel Details</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs end-->
+
+    <!--container start-->
+    <div class="container">
+        <div class="row">
+            <!--blog start-->
+            <div class="col-lg-12">
+                <div class="blog-item" th:each="hotel : ${hotelList}">
+                    <div class="row">
+                        <div class="col-lg-2 col-sm-2">
+                            <div class="date-wrap">
+                                <span class="date" th:text="${hotel.hotelHotelLevel.hotelLevelVal}">10</span>
+                                <span class="month" th:text="${hotel.hotelHotelLevel.hotelLevelNameEnglish}">Star</span>
+                            </div>
+                            <!--<div class="comnt-wrap">
+                                <span class="comnt-ico">
+                                    <i class="fa fa-comments"></i>
+                                </span>
+                                <span class="value">15</span>
+                            </div>-->
+                        </div>
+                        <div class="col-lg-10 col-sm-10">
+                            <div class="blog-img">
+                                <img id="uploadFileHotelPreview"
+                                     name="uploadFileHotelPreview"
+                                     class="img-responsive"
+                                     th:src="*{'/upload-dir' + hotel.hotelImageUrl}"
+                                     alt="Hotel image"/>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2 col-sm-2 text-right">
+                            <!-- <div class="author">
+                                 By <a href="#">Admin</a>
+                             </div>
+                             <ul class="list-unstyled">
+                                 <li><a href="javascript:;"><em>travel</em></a></li>
+                                 <li><a href="javascript:;"><em>tour</em></a></li>
+                                 <li><a href="javascript:;"><em>recreation</em></a></li>
+                                 <li><a href="javascript:;"><em>tourism</em></a></li>
+                             </ul>
+                             <div class="shate-view">
+                                 <ul class="list-unstyled">
+                                     <li><a href="javascript:;">209 View</a></li>
+                                     <li><a href="javascript:;">23 Share</a></li>
+
+                                 </ul>
+                             </div>-->
+                        </div>
+                        <div class="col-lg-10 col-sm-10">
+                            <h1><a href="#" th:text="${hotel.hotelNameEnglish}">XXXX</a></h1>
+                            <p th:utext="${hotel.hotelDescriptionEnglish}">YYYY</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--blog end-->
+        </div>
+    </div>
+    <!--container end-->
+
+
+    <div class="container col-lg-12 col-sm-12">  <!--Table-->
+        <section class="panel">
+            <header class="panel-heading">
+                Room Detail
+            </header>
+            <form role="form"
+                  th:object="${reserveHotelBinding}"
+                  th:action="@{/reserve/reservelist}"
+                  method="post">
+
+                <input type="hidden" th:field="*{hotel}"  />
+
+                <table class="table table-striped table-advance table-hover" >
+                    <thead>
+                    <tr>
+                        <th><i class="fa fa-bed"></i> Room</th>
+                        <th><i class="fa fa-users"></i> Max</th>
+                        <th><i class="fa fa-bookmark"></i> Today's Price</th>
+                        <th><i class="fa fa-shopping-basket"></i> Number rooms</th>
+                        <th><i class=" fa fa-edit"></i> Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="reserveRoom ,status : ${reserveHotelBinding.reserveRoomList}">
+                        <td><a href="#" th:text="${reserveRoom.roomRoomType.roomTypeNameEnglish}" >
+                        </a><input type="hidden" th:field="*{reserveRoomList[__${status.index}__].roomId}" /></td>
+                        <td th:text="${reserveRoom.roomMaxPerson}"></td>
+                        <td th:text="${reserveRoom.roomNormalPrice}" ></td>
+                        <td>
+                            <select class="form-control" th:field="*{reserveRoomList[__${status.index}__].reserveRoomQuantity}">
+                                <option th:each="i : ${#numbers.sequence(0,__${reserveRoom.roomQuantity}__)}" th:value="${i}"
+                                        th:text="${i}">Segmentos
+                                </option>
+
+                            </select>
+
+
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-success btn-xx"><i class="fa fa-check"></i></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </section>
+
+    </div>
+    <!-- End Table-->
+
+</div>
+<!--fragment end-->
+
+</body>
+
+</html>

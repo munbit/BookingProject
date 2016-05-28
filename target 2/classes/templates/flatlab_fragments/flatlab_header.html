@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="template/layout">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Booking Nida Admin</title>
+</head>
+
+<body>
+
+<!--header start-->
+<header class="header-frontend" th:fragment="flatlab_header">
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Booking<span>Nida</span></a>
+            </div>
+            <div class="navbar-collapse collapse ">
+                <ul class="nav navbar-nav">
+                    <li class="home"><a th:href="@{/}">Home</a></li>
+                    <li class="registration" th:unless="${#httpServletRequest.remoteUser}" ><a th:href="@{/member/signup}">Signup</a></li>
+                    <li th:unless="${#httpServletRequest.remoteUser}" ><a th:href="@{/login/}">Login</a></li>
+                    <li class="dropdown " th:if="${#httpServletRequest.remoteUser}">
+                        <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0"
+                           data-close-others="false">My <b class=" fa fa-angle-down"  th:inline="text" > [[${#httpServletRequest.remoteUser}]] </b></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/reserve/history}">My History</a></li>
+                            <li><a th:href="@{/logout}">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li><input type="text" placeholder=" Search" class="form-control search"/></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<!--header end-->
+
+
+</body>
+
+</html>

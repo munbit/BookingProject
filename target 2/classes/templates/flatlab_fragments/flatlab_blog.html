@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="template/layout">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Booking Nida Admin</title>
+</head>
+
+<body>
+
+<!--fragment start-->
+<div th:fragment="flatlab_blog">
+    <!--breadcrumbs start-->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-sm-4">
+                    <h1>Booking</h1>
+                </div>
+                <div class="col-lg-8 col-sm-8">
+                    <ol class="breadcrumb pull-right">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Pages</a></li>
+                        <li class="active">Booking</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs end-->
+
+    <!--container start-->
+    <div class="container">
+        <div class="row">
+            <!--blog start-->
+            <div class="col-lg-9 "  >
+                <div class="blog-item" th:each="hotel : ${hotelList}">
+                    <div class="row">
+                        <div class="col-lg-2 col-sm-2">
+                            <div class="date-wrap">
+                                <span class="date" th:text="${hotel.hotelHotelLevel.hotelLevelVal}">10</span>
+                                <span class="month" th:text="${hotel.hotelHotelLevel.hotelLevelNameEnglish}">Star</span>
+                            </div>
+                            <!--<div class="comnt-wrap">
+                                <span class="comnt-ico">
+                                    <i class="fa fa-comments"></i>
+                                </span>
+                                <span class="value">15</span>
+                            </div>-->
+                        </div>
+                        <div class="col-lg-10 col-sm-10">
+                            <div class="blog-img">
+                                <img id="uploadFileHotelPreview"
+                                     name="uploadFileHotelPreview"
+                                     class="img-responsive"
+                                     th:src="*{'/upload-dir' + hotel.hotelImageUrl}"
+                                     alt="Hotel image" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2 col-sm-2 text-right">
+                           <!-- <div class="author">
+                                By <a href="#">Admin</a>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li><a href="javascript:;"><em>travel</em></a></li>
+                                <li><a href="javascript:;"><em>tour</em></a></li>
+                                <li><a href="javascript:;"><em>recreation</em></a></li>
+                                <li><a href="javascript:;"><em>tourism</em></a></li>
+                            </ul>
+                            <div class="shate-view">
+                                <ul class="list-unstyled">
+                                    <li><a href="javascript:;">209 View</a></li>
+                                    <li><a href="javascript:;">23 Share</a></li>
+
+                                </ul>
+                            </div>-->
+                        </div>
+                        <div class="col-lg-10 col-sm-10">
+                            <h1><a th:href="@{/roomdetail/{id}(id=${hotel.hotelId})}" th:text="${hotel.hotelNameEnglish}">XXXX</a></h1>
+                            <p th:utext="${hotel.hotelDescriptionEnglish}">YYYY</p>
+                            <a th:href="@{/roomdetail/{id}(id=${hotel.hotelId})}" class="btn btn-danger">Hotel detail</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <ul class="pagination">
+                        <li><a href="#">«</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">»</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-lg-3">
+                <div class="blog-side-item">
+                    <div class="search-row">
+                        <section class="panel">
+                          <!--  <header class="panel-heading">
+                            </header>-->
+                            <div class="panel-body">
+                                <form role="form"
+                                      data-toggle="validator"
+                                      th:object="${hotelSearchBinding}"
+                                      th:action="@{/searchhotel}"
+                                      method="post">
+
+                                    <div class="form-group page-header">
+                                        <h2>Search !
+                                            <small>Booking</small>
+                                        </h2>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>จุดหมายหรือชื่อโรงแรม</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               id="target"
+                                               th:field="*{searchHotelName}"
+                                               required="required"
+                                               placeholder="จุดหมายหรือชื่อโรงแรม"/>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>วันที่เช็คอิน</label>
+                                        <div class="iconic-input right">
+                                            <i class="fa fa-calendar"></i>
+                                            <input type="text"
+                                                   id ="start_datepicker"
+                                                   required="required"
+                                                   th:field="*{searchStartDate}"
+                                                   class="form-control form-control-inline  input-medium"
+                                                   placeholder="วันที่เช็คอิน"/>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>วันที่เช็คเอาท์</label>
+                                        <div class="iconic-input right">
+                                            <i class="fa fa-calendar"></i>
+                                            <input type="text"
+                                                   id ="end_datepicker"
+                                                   required="required"
+                                                   th:field="*{searchEndDate}"
+                                                   class="form-control form-control-inline  input-medium"
+                                                   placeholder="วันที่เช็คเอาท์"/>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>ห้องพัก</label>
+                                        <select class="form-control" th:field="*{searchRoomQuantity}">
+                                            <option th:value="1">1</option>
+                                            <option th:value="2">2</option>
+                                            <option th:value="3">3</option>
+                                            <option th:value="4">4</option>
+                                            <option th:value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>ผุ้ใหญ่</label>
+                                        <select class="form-control" th:field="*{searchAdulQuantity}">
+                                            <option th:value="1">1</option>
+                                            <option th:value="2" selected="selected">2</option>
+                                            <option th:value="3">3</option>
+                                            <option th:value="4">4</option>
+                                            <option th:value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>เด็ก</label>
+                                        <select class="form-control" th:field="*{searchBabyQuantity}">
+                                            <option th:value="1">0</option>
+                                            <option th:value="2">1</option>
+                                            <option th:value="3">2</option>
+                                            <option th:value="4">3</option>
+                                            <option th:value="5">4</option>
+                                        </select>
+                                    </div>
+                                    <input type="submit" class="btn btn-danger" value="ค้นหา"/>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <!--blog end-->
+        </div>
+
+    </div>
+    <!--container end-->
+</div>
+<!--fragment end-->
+
+</body>
+
+</html>
