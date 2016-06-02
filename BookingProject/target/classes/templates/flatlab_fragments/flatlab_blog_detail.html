@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="template/layout">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Booking Nida Admin</title>
+</head>
+
+<body>
+
+<!--fragment start-->
+<div th:fragment="flatlab_blog_detail">
+    <!--breadcrumbs start-->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-sm-4">
+                    <h1>Hotel Details</h1>
+                </div>
+                <div class="col-lg-8 col-sm-8">
+                    <ol class="breadcrumb pull-right">
+                        <li class="active">Hotel Details</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs end-->
+
+    <!--container start-->
+    <div class="container">
+        <div class="row">
+            <!--blog start-->
+            <div class="col-lg-12">
+                <div class="blog-item" th:each="hotelExtraBinding : ${hotelExtraBindingList}">
+                    <div class="row">
+                        <div class="col-lg-2 col-sm-2">
+                            <div class="date-wrap">
+                                <span class="date"
+                                      th:text="${hotelExtraBinding.hotelHotelLevel.hotelLevelVal}">10</span>
+                                <span class="month"
+                                      th:text="${hotelExtraBinding.hotelHotelLevel.hotelLevelNameEnglish}">Star</span>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-10 col-sm-10">
+                            <div class="blog-img">
+                                <div id="myCarousel" class="carousel slide">
+                                    <!-- Carousel items -->
+                                    <div class="carousel-inner">
+                                        <div class="active item">
+                                            <img alt="" class="img-responsive img-rounded"
+                                                 th:src="*{'/upload-dir' + hotelExtraBinding.hotelImageUrl}"/>
+                                            <div class="carousel-caption">
+                                                <p><span class="about-testimonial-company"
+                                                         th:text="${hotelExtraBinding.hotelNameEnglish}">ABC Realestate LLC</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class=" item"
+                                             th:each="hotelPic : ${hotelExtraBinding.hotelHotelPictureList}">
+                                            <img alt="" class="img-responsive img-rounded"
+                                                 th:src="*{'/upload-dir' + hotelPic.hotelPicturePictureStore.pictureStorePath}"/>
+                                            <div class="carousel-caption">
+                                                <p><span class="about-testimonial-company"
+                                                         th:text="${hotelPic.hotelPictureHotel.hotelNameEnglish}">ABC Realestate LLC</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Carousel nav -->
+                                    <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                                        <i class="fa fa-angle-left"></i>
+                                    </a>
+                                    <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </div>
+                                <!--    <img id="uploadFileHotelPreview"
+                                         name="uploadFileHotelPreview"
+                                         class="img-responsive"
+                                         th:src="*{'/upload-dir' + hotelExtraBinding.hotelImageUrl}"
+                                         alt="Hotel image"/>
+                                -->
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2 col-sm-2 text-right">
+
+                        </div>
+                        <div class="col-lg-10 col-sm-10">
+                            <h1><a href="#" th:text="${hotelExtraBinding.hotelNameEnglish}">XXXX</a></h1>
+                            <p th:utext="${hotelExtraBinding.hotelDescriptionEnglish}">YYYY</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--blog end-->
+        </div>
+    </div>
+    <!--container end-->
+
+
+    <div class="container col-lg-12 col-sm-12">  <!--Table-->
+        <section class="panel">
+            <header class="panel-heading">
+                Room Detail
+            </header>
+            <form role="form"
+                  class="form-inline"
+                  th:object="${reserveHotelBinding}"
+                  th:action="@{/reserve/reservelist}"
+                  method="post">
+
+                <div th:if="${statusReserve eq 'unsuccess'}">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <strong>Error!</strong> Please Select Room Number.
+                    </div>
+                </div>
+
+                <input type="hidden" th:field="*{hotel}"/>
+
+                <div class="form-group">
+                    <div class="iconic-input right">
+                        <i class="fa fa-calendar"></i>
+
+                        <label>วันที่เช็คอิน:</label>
+                        <input type="text"
+                               id="start_datepicker"
+                               required="required"
+                               th:field="*{searchStartDate}"
+                               class="form-control form-control-inline  input-medium"
+                               placeholder="วันที่เช็คอิน"/>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="iconic-input right">
+                        <i class="fa fa-calendar"></i>
+
+                        <label>วันที่เช็คเอาท์:</label>
+                        <input type="text"
+                               id="end_datepicker"
+                               required="required"
+                               th:field="*{searchEndDate}"
+                               class="form-control form-control-inline  input-medium"
+                               placeholder="วันที่เช็คเอาท์"/>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+
+                <table class="table table-striped table-advance table-hover">
+                    <thead>
+                    <tr>
+                        <th><i class="fa fa-bed"></i> Room</th>
+                        <th><i class="fa fa-users"></i> Max</th>
+                        <th><i class="fa fa-bookmark"></i> Today's Price</th>
+                        <th><i class="fa fa-shopping-basket"></i> Number rooms</th>
+                        <th><i class=" fa fa-edit"></i> Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="reserveRoom ,status : ${reserveHotelBinding.reserveRoomList}">
+                        <td><a href="#" th:text="${reserveRoom.roomRoomType.roomTypeNameEnglish}">
+                        </a><input type="hidden" th:field="*{reserveRoomList[__${status.index}__].roomId}"/></td>
+                        <td th:text="${reserveRoom.roomMaxPerson}"></td>
+                        <td th:text="${reserveRoom.roomNormalPrice}"></td>
+                        <td>
+                            <select class="form-control input-sm m-bot15"
+                                    th:field="*{reserveRoomList[__${status.index}__].reserveRoomQuantity}">
+                                <option th:each="i : ${#numbers.sequence(0,__${reserveRoom.roomQuantity}__)}"
+                                        th:value="${i}"
+                                        th:text="${i}">Segmentos
+                                </option>
+
+                            </select>
+
+
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-success "><i class="fa fa-check"></i> จอง</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </section>
+
+    </div>
+    <!-- End Table-->
+
+</div>
+<!--fragment end-->
+
+</body>
+
+</html>

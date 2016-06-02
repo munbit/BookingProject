@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Booking Nida Admin</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+
+    <!-- MetisMenu CSS -->
+    <link href="../static/css/metisMenu.css" th:href="@{/css/metisMenu.css}" rel="stylesheet"/>
+
+    <!-- Timeline CSS -->
+    <link href="../static/css/timeline.css" th:href="@{/css/timeline.css}" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link href="../static/css/sb-admin-2.css" th:href="@{/css/sb-admin-2.css}" rel="stylesheet"/>
+
+    <!-- Morris Charts CSS -->
+    <link href="../static/css/morris.css" th:href="@{/css/morris.css}" rel="stylesheet"/>
+
+    <!-- Custom Fonts -->
+    <link href="../static/font-awesome/css/font-awesome.css" th:href="@{/font-awesome/css/font-awesome.css}"
+          rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div class="navbar-default sidebar" role="navigation" th:fragment="menuleft">
+        <div class="sidebar-nav navbar-collapse">
+
+            <div class="nav list-group">
+                <a class="list-group-item admin-booking" th:href="@{/admin/bookinglist/}" ><i class="fa fa-check-square-o fa-fw"></i>&nbsp; Booking Reserve Mgmt.</a>
+                <a class="list-group-item admin-hotel" th:href="@{/admin/hotel/}" ><i class="fa fa-building-o fa-fw"></i>&nbsp; Hotel Management</a>
+                <a class="list-group-item admin-roomtype" th:href="@{/admin/roomtype/}" ><i class="fa fa-sitemap fa-fw"></i>&nbsp; Room Type Master</a>
+                <a class="list-group-item admin-bedtype" th:href="@{/admin/bedtype/}" ><i class="fa fa-bed fa-fw"></i>&nbsp; Bed Type Master</a>
+                <a class="list-group-item admin-facilitytype" th:href="@{/admin/facilitytype/}" ><i class="fa fa-television fa-fw"></i>&nbsp; Facility Type Master</a>
+                <a class="list-group-item admin-user" th:href="@{/admin/user/}" ><i class="fa fa-user fa-fw"></i>&nbsp; Member Management</a>
+                <a class="list-group-item admin-continent" th:href="@{/admin/continent/}" ><i class="fa fa-arrows fa-fw"></i>&nbsp; Continent Master </a>
+                <a class="list-group-item admin-country" th:href="@{/admin/country/}" ><i class="fa fa-globe fa-fw"></i>&nbsp; Country Master </a>
+                <a class="list-group-item admin-zone" th:href="@{/admin/zone/}" ><i class="fa fa-columns fa-fw"></i>&nbsp; Zone Master </a>
+                <a class="list-group-item admin-province" th:href="@{/admin/province/}" ><i class="fa fa-folder fa-fw"></i>&nbsp; Province Master </a>
+                <a class="list-group-item admin-district" th:href="@{/admin/district/}" ><i class="fa fa-puzzle-piece fa-fw"></i>&nbsp; District Master </a>
+                <a class="list-group-item admin-locality" th:href="@{/admin/locality/}" ><i class="fa fa-flag fa-fw"></i>&nbsp; Locality Master </a>
+                <a class="list-group-item admin-hoteltype" th:href="@{/admin/hoteltype/}" ><i class="fa fa-list fa-fw"></i>&nbsp; Hotel Type Master </a>
+                <a class="list-group-item admin-hotellevel" th:href="@{/admin/hotellevel/}" ><i class="fa fa-star-o fa-fw"></i>&nbsp; Hotel Level Master </a>
+            </div>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+
+
+</body>
+
+</html>
