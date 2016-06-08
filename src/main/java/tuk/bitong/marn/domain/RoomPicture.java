@@ -6,7 +6,8 @@ import javax.persistence.*;
  * Created by muhai on 15/04/2559.
  */
 @Entity
-@Table(name = "roompicture",uniqueConstraints={@UniqueConstraint(columnNames={"roompicturehotel","roompicturepicturestore"})})
+@Table(name = "roompicture",
+        uniqueConstraints={@UniqueConstraint(columnNames={"roompicturehotel","roompicturepicturestore","roompictureroom"})})
 public class RoomPicture {
 
     private static final long serialVersionUID = 1L;
@@ -19,6 +20,10 @@ public class RoomPicture {
     @ManyToOne
     @JoinColumn(name = "roompicturehotel")
     private Hotel roomPictureHotel;
+
+    @ManyToOne
+    @JoinColumn(name = "roompictureroom")
+    private Room roomPictureRoom;
 
     @ManyToOne
     @JoinColumn(name = "roompicturepicturestore")
@@ -60,5 +65,13 @@ public class RoomPicture {
 
     public void setRoomPictureId(Long roomPictureId) {
         this.roomPictureId = roomPictureId;
+    }
+
+    public Room getRoomPictureRoom() {
+        return roomPictureRoom;
+    }
+
+    public void setRoomPictureRoom(Room roomPictureRoom) {
+        this.roomPictureRoom = roomPictureRoom;
     }
 }

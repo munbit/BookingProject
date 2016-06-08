@@ -58,7 +58,7 @@ public class RoomPictureController {
     String roomPictureListPage(Model model,
                                 @PathVariable("roomId") Long roomId) {
         Room vRoom = roomRepository.findOne(roomId);
-        List<RoomPicture> vRoomPicture = roomPictureRepository.findByroomPictureHotelWithHotel(vRoom.getRoomHotel());
+        List<RoomPicture> vRoomPicture = roomPictureRepository.findByroomPictureHotelWithHotelAndRoom(vRoom.getRoomHotel(),vRoom);
         model.addAttribute("room", vRoom);
         model.addAttribute("roomPictureList", vRoomPicture);
         model.addAttribute("pictureStoreList", pictureStoreRepository.findByPictureStoreWithHotel(vRoom.getRoomHotel()));
@@ -76,6 +76,7 @@ public class RoomPictureController {
             Room vRoom = roomRepository.findOne(roomId);
             PictureStore vPic = pictureStoreRepository.findOne(pictureStoreId);
             RoomPicture vRoomPic = new RoomPicture();
+            vRoomPic.setRoomPictureRoom(vRoom);
             vRoomPic.setRoomPictureHotel(vRoom.getRoomHotel());
             vRoomPic.setRoomPicturePictureStore(vPic);
             vRoomPic.setEnabled(1);
@@ -83,7 +84,7 @@ public class RoomPictureController {
             redirectAttributes.addFlashAttribute("statusSave", "success");
         } catch (Exception ex) {
             Room vRoom = roomRepository.findOne(roomId);
-            List<RoomPicture> vRoomPicture = roomPictureRepository.findByroomPictureHotelWithHotel(vRoom.getRoomHotel());
+            List<RoomPicture> vRoomPicture = roomPictureRepository.findByroomPictureHotelWithHotelAndRoom(vRoom.getRoomHotel(),vRoom);
             model.addAttribute("room", vRoom);
             model.addAttribute("roomPictureList", vRoomPicture);
             model.addAttribute("pictureStoreList", pictureStoreRepository.findByPictureStoreWithHotel(vRoom.getRoomHotel()));

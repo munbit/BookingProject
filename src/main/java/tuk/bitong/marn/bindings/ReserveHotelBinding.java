@@ -2,6 +2,7 @@ package tuk.bitong.marn.bindings;
 
 import java.util.List;
 import tuk.bitong.marn.domain.Hotel;
+import tuk.bitong.marn.domain.HotelPicture;
 import tuk.bitong.marn.domain.Room;
 
 /**
@@ -83,4 +84,5 @@ public class ReserveHotelBinding {
     public void setReserveRoomList(List<ReserveRoomBinding> reserveRoomList) {
         this.reserveRoomList = reserveRoomList;
     }
+
 }

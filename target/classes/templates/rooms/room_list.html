@@ -171,11 +171,11 @@
                         <td> <i th:if="${room.enabled}==1" class="fa fa-star" data-toggle="tooltip" data-placement="top" title="Enable"></i> <i th:if="${room.enabled} == 0" class="fa fa-star-o" data-toggle="tooltip" data-placement="top" title="Disable"></i> </td>
                         <td class="td-actions">
                             <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                                <a th:href="@{/admin/roommapfacility/{id}(id=${hotel.hotelId})}"><i class="fa fa-television" data-toggle="tooltip" data-placement="top" title="Facility"></i></a>
+                                <a th:href="@{/admin/roommapfacility/{id}(id=${room.roomId})}"><i class="fa fa-television" data-toggle="tooltip" data-placement="top" title="Facility"></i></a>
                                 &nbsp; &nbsp;
                                 <a th:href="@{/admin/picturestore/{id}(id=${hotel.hotelId})}"><i class="fa fa-picture-o" data-toggle="tooltip" data-placement="top" title="Upload"></i></a>
                                 &nbsp; &nbsp;
-                                <a th:href="@{/admin/roompicture/{id}(id=${room.roomId})}"><i class="fa fa-check-square" data-toggle="tooltip" data-placement="top" title="Map Image"></i></a>
+                                <a th:href="@{/admin/roompicture/{id}(id=${room.roomId})}"><i class="fa fa-check-square" data-toggle="tooltip" data-placement="top" title="Room Mapping Image"></i></a>
                                 &nbsp; &nbsp;
                                 <a th:href="@{/admin/room/edit/{id}(id=${room.roomId})}"><i class="fa fa-pencil-square-o" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>
                                 &nbsp; &nbsp;

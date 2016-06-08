@@ -17,4 +17,8 @@ public interface RoomPictureRepository extends CrudRepository<RoomPicture, Long>
     @Query(value = "select r from RoomPicture r where r.roomPictureHotel =?1 ")
     public List<RoomPicture> findByroomPictureHotelWithHotel(Hotel hotel);
 
+    @Query(value = "select r from RoomPicture r where r.roomPictureHotel =?1  And r.roomPictureRoom =?2 ")
+    public List<RoomPicture> findByroomPictureHotelWithHotelAndRoom(Hotel hotel ,Room room);
+
+
 }

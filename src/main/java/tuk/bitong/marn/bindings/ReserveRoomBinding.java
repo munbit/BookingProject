@@ -1,6 +1,5 @@
 package tuk.bitong.marn.bindings;
 
-import com.sun.tools.javac.util.List;
 import tuk.bitong.marn.domain.Room;
 
 /**

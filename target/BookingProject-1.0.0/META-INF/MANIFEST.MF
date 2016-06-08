@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: BookingProject(DevSoft)
+Implementation-Version: 1.0.0
+Built-By: MUHAIMAN-HENG
+Implementation-Vendor-Id: tuk.bitong.marn
+Created-By: IntelliJ IDEA
+Build-Jdk: 1.8.0_92
+Main-Class: ${start-class}
+

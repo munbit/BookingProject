@@ -1,5 +1,7 @@
 package tuk.bitong.marn.bindings;
 
+import tuk.bitong.marn.domain.Hotel;
+
 import java.util.Date;
 
 /**

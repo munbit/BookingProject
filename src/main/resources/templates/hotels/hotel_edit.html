@@ -281,7 +281,7 @@
                         <img id="uploadFileHotelPreview"
                              name="uploadFileHotelPreview"
                              class="img-responsive"
-                             th:src="*{'/upload-dir' + hotelImageUrl}"
+                             th:src="*{'/BookingProject/upload-dir' + hotelImageUrl}"
                              alt="Hotel image" />
                     </div>
                 </div>
@@ -343,7 +343,7 @@
 
     $('#country').on('change', function() {
 
-        $.get("/rest/api/listProvinceByCountryCode?countryCode=" + this.value , function(selectValues, status){
+        $.get("/BookingProject/rest/api/listProvinceByCountryCode?countryCode=" + this.value , function(selectValues, status){
             $('#province').find('option:not(:first)').remove();
             $('#district').find('option:not(:first)').remove();
             $('#locality').find('option:not(:first)').remove();
@@ -358,7 +358,7 @@
 
     $('#province').on('change', function() {
 
-        $.get("/rest/api/listDistrictByProvinceCode?provinceCode=" + this.value , function(selectValues, status){
+        $.get("/BookingProject/rest/api/listDistrictByProvinceCode?provinceCode=" + this.value , function(selectValues, status){
             $('#district').find('option:not(:first)').remove();
             $('#locality').find('option:not(:first)').remove();
             $.each(selectValues, function(key, value) {
@@ -372,7 +372,7 @@
 
     $('#district').on('change', function() {
 
-        $.get("/rest/api/listLocalityByDistrictCode?districtCode=" + this.value , function(selectValues, status){
+        $.get("/BookingProject/rest/api/listLocalityByDistrictCode?districtCode=" + this.value , function(selectValues, status){
             $('#locality').find('option:not(:first)').remove();
             $.each(selectValues, function(key, value) {
                 $('#locality')

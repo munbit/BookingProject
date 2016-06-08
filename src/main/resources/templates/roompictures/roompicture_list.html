@@ -158,7 +158,7 @@
                 <td><img id="uploadHotelPicturePreview"
                          name="uploadHotelPicturePreview"
                          class="img-thumbnail" style="width:120px;height:120px"
-                         th:src="*{'/upload-dir' + roomPicture.roomPicturePictureStore.pictureStorePath}"
+                         th:src="*{'/BookingProject/upload-dir' + roomPicture.roomPicturePictureStore.pictureStorePath}"
                          alt="image"/></td>
 
                 <td><i th:if="${roomPicture.enabled}==1" class="fa fa-star" data-toggle="tooltip"
@@ -206,7 +206,7 @@
                 <td><img id="uploadPictureStorePreview"
                          name="uploadPictureStorePreview"
                          class="img-thumbnail" style="width:120px;height:120px"
-                         th:src="*{'/upload-dir' + pictureStore.pictureStorePath}"
+                         th:src="*{'/BookingProject/upload-dir' + pictureStore.pictureStorePath}"
                          alt="image"/></td>
                 <td><i th:if="${pictureStore.enabled}==1" class="fa fa-star" data-toggle="tooltip"
                        data-placement="top" title="Enable"></i> <i th:if="${pictureStore.enabled} == 0"

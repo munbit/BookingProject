@@ -70,6 +70,7 @@ public class HotelController {
     //public static String CLASSPATH_UPLOAD_DIR ="classpath:static/upload-dir";
 
     public HotelController() {
+
         context.setVariable("hotelList", null);
         context.setVariable("hotel", new Hotel());
         context.setVariable("hotelTypeList", null);

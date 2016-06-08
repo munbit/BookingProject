@@ -156,7 +156,7 @@
                         <td >  <img id="uploadPictureStorePreview"
                                    name="uploadPictureStorePreview"
                                    class="img-thumbnail" style="width:120px;height:120px"
-                                   th:src="*{'/upload-dir' + pictureStore.pictureStorePath}"
+                                   th:src="*{'/BookingProject/upload-dir' + pictureStore.pictureStorePath}"
                                    alt="image" /></td>
                         <td> <i th:if="${pictureStore.enabled}==1" class="fa fa-star" data-toggle="tooltip" data-placement="top" title="Enable"></i> <i th:if="${pictureStore.enabled} == 0" class="fa fa-star-o" data-toggle="tooltip" data-placement="top" title="Disable"></i> </td>
                         <td class="td-actions">

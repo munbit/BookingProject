@@ -14,45 +14,46 @@ public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="hotelid")
-    private Long hotelId;
+    protected Long hotelId;
 
     @Column(name="hotelnamethai",nullable = false)
-    private String hotelNameThai;
+    protected String hotelNameThai;
 
     @Column(name="hotelnameenglish",nullable = false)
-    private String hotelNameEnglish;
+    protected String hotelNameEnglish;
 
     @Lob
     @Column(name="hoteldescriptionthai",nullable = false)
-    private String hotelDescriptionThai;
+    protected String hotelDescriptionThai;
 
     @Lob
     @Column(name="hoteldescriptionenglish",nullable = false)
-    private String hotelDescriptionEnglish;
+    protected String hotelDescriptionEnglish;
 
     @Column(name="hoteladdressthai",nullable = false)
-    private String hotelAddressThai;
+    protected String hotelAddressThai;
 
     @Column(name="hoteladdressenglish",nullable = false)
-    private String hotelAddressEnglish;
+    protected String hotelAddressEnglish;
 
     @ManyToOne
-    private Locality hotelLocality;
+    protected Locality hotelLocality;
 
     @ManyToOne
-    private HotelLevel hotelHotelLevel;
+    protected HotelLevel hotelHotelLevel;
 
     @ManyToOne
-    private HotelType hotelHotelType;
+    protected HotelType hotelHotelType;
 
     @Column(name="hotelimageurl")
-    private String hotelImageUrl;
+    protected String hotelImageUrl;
 
     @Column(name ="enabled")
-    private int enabled;
+    protected int enabled;
 
     public Hotel() {
     }
+
 
     public Long getHotelId() {
         return hotelId;
